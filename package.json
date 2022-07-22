@@ -1,6 +1,6 @@
 {
   "name": "strn-avt",
-  "version": "1.0.1",
+  "version": "1.0.10",
   "description": "slack notification for test reports, specific template",
   "main": "index.js",
   "dependencies": {

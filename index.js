@@ -8,7 +8,7 @@ function SlackTestReportNotification(slackUrl) {
   this.slack = SlackNotify(slackUrl);
 }
 
-SlackTestReportNotification.protoype.sendReportNotification = function(reportJsonFilePath, gateway) {
+SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, gateway) {
     const resolvedPath = path.resolve(__dirname, reportJsonFilePath);
 
     const jsonString = fs.readFileSync(resolvedPath);
@@ -23,7 +23,7 @@ SlackTestReportNotification.protoype.sendReportNotification = function(reportJso
     duration.setSeconds(reportConfig.stats.duration);
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
 
-    slack.alert({
+    this.slack.alert({
         attachments: [
             {
                 color: alertColor,
@@ -89,6 +89,7 @@ SlackTestReportNotification.protoype.sendReportNotification = function(reportJso
 }
 
 function getPercentage(target, total){
-    return (target * 100) / total;
+    const percentage = (target * 100) / total;
+    return Math.round(percentage * 100) / 100;
 }
 
